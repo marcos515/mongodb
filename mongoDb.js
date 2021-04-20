@@ -130,7 +130,7 @@ function mongodb(host) {
                 });
             })
         },
-        query: function (database, collection, options, query, limit) {
+        limit: function (database, collection, options, query, limit) {
             return new Promise((resolve, reject) => {
                 setTimeout(async () => { reject("Timeout") }, 5000)
                 MongoClient.connect(host, options, function (err, db) {
