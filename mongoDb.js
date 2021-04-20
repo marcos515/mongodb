@@ -30,17 +30,6 @@ function mongodb(host) {
                 });
             })
         },
-<<<<<<< HEAD
-        delete: function (database, collection, options, query) {
-            return new Promise((resolve, reject) => {
-                setTimeout(async ()=>{reject("Timeout")}, 5000)
-                MongoClient.connect(host, options, function (err, db) {
-                    if (err) reject(err);
-                    var dbo = db.db(database);
-                    dbo.collection(collection).deleteMany(query, function(err, result) {
-                        if (err) reject(err);
-                        resolve(result);
-=======
         createDatabase: function (database, options) {
             return new Promise((resolve, reject) => {
                 setTimeout(async () => { reject("Timeout") }, 5000)
@@ -66,35 +55,11 @@ function mongodb(host) {
                     dbo.createCollection(collection, function (err, res) {
                         if (err) reject(err);
                         resolve("Collection created!");
->>>>>>> 76d27bbabeaa557d8184586273c2d9a3c1d60598
                         db.close();
                     });
                 });
             })
         },
-<<<<<<< HEAD
-        update: function (database, collection, options, query, newdata) {
-            return new Promise((resolve, reject) => {
-                setTimeout(async ()=>{reject("Timeout")}, 5000)
-                MongoClient.connect(host, options, function (err, db) {
-                    if (err) reject(err);
-                    var dbo = db.db(database);
-                    dbo.collection(collection).updateOne(query, newdata, function(err, result) {
-                        if (err) reject(err);
-                        resolve(result);
-                        db.close();
-                    });
-                });
-            })
-        },
-        query: function (database, collection, options, query, limit) {
-            return new Promise((resolve, reject) => {
-                setTimeout(async ()=>{reject("Timeout")}, 5000)
-                MongoClient.connect(host, options, function (err, db) {
-                    if (err) reject(err);
-                    var dbo = db.db(database);
-                    dbo.collection(collection).find(query).limit(limit).toArray(function (err, result) {
-=======
         dropCollection: function (database, collection, options) {
             return new Promise((resolve, reject) => {
                 setTimeout(async () => { reject("Timeout") }, 5000)
@@ -116,27 +81,10 @@ function mongodb(host) {
                     if (err) reject(err);
                     var dbo = db.db(database);
                     dbo.collection(collection).findOne(find, function (err, result) {
->>>>>>> 76d27bbabeaa557d8184586273c2d9a3c1d60598
                         if (err) reject(err);
                         resolve(result);
                         db.close();
                     });
-<<<<<<< HEAD
-                });
-            })
-        },
-        join: function (database, collection, options, data) {
-            return new Promise((resolve, reject) => {
-                MongoClient.connect(host, options, function (err, db) {
-                    if (err) reject(err);
-                    var dbo = db.db(database);
-                    dbo.collection(collection).aggregate(data).toArray(function(err, res) {
-                        if (err) reject(err);
-                        resolve(res);
-                        db.close();
-                    });
-=======
-
                 });
             })
         },
@@ -146,13 +94,66 @@ function mongodb(host) {
                 MongoClient.connect(host, options, function (err, db) {
                     if (err) reject(err);
                     var dbo = db.db(database);
-                    dbo.collection(collection).find().sort(sort).toArray(function(err, result) {
+                    dbo.collection(collection).find().sort(sort).toArray(function (err, result) {
                         if (err) reject(err);
                         resolve(result);
                         db.close();
-                      });
-
->>>>>>> 76d27bbabeaa557d8184586273c2d9a3c1d60598
+                    });
+                });
+            })
+        },
+        delete: function (database, collection, options, query) {
+            return new Promise((resolve, reject) => {
+                setTimeout(async () => { reject("Timeout") }, 5000)
+                MongoClient.connect(host, options, function (err, db) {
+                    if (err) reject(err);
+                    var dbo = db.db(database);
+                    dbo.collection(collection).deleteMany(query, function (err, result) {
+                        if (err) reject(err);
+                        resolve(result);
+                        db.close();
+                    });
+                });
+            })
+        },
+        update: function (database, collection, options, query, newdata) {
+            return new Promise((resolve, reject) => {
+                setTimeout(async () => { reject("Timeout") }, 5000)
+                MongoClient.connect(host, options, function (err, db) {
+                    if (err) reject(err);
+                    var dbo = db.db(database);
+                    dbo.collection(collection).updateOne(query, newdata, function (err, result) {
+                        if (err) reject(err);
+                        resolve(result);
+                        db.close();
+                    });
+                });
+            })
+        },
+        query: function (database, collection, options, query, limit) {
+            return new Promise((resolve, reject) => {
+                setTimeout(async () => { reject("Timeout") }, 5000)
+                MongoClient.connect(host, options, function (err, db) {
+                    if (err) reject(err);
+                    var dbo = db.db(database);
+                    dbo.collection(collection).find(query).limit(limit).toArray(function (err, result) {
+                        if (err) reject(err);
+                        resolve(result);
+                        db.close();
+                    });
+                });
+            })
+        },
+        join: function (database, collection, options, data) {
+            return new Promise((resolve, reject) => {
+                MongoClient.connect(host, options, function (err, db) {
+                    if (err) reject(err);
+                    var dbo = db.db(database);
+                    dbo.collection(collection).aggregate(data).toArray(function (err, res) {
+                        if (err) reject(err);
+                        resolve(res);
+                        db.close();
+                    });
                 });
             })
         }
